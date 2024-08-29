@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм»
 
-* Студент: [Екатерина Рудакова](https://up.htmlacademy.ru/javascript-individual/2/user/1486905).
-* Наставник: `Неизвестно`.
+- Студент: [Екатерина Рудакова](https://up.htmlacademy.ru/javascript-individual/2/user/1486905).
+- Наставник: [Виктория Никитина](https://htmlacademy.ru/profile/id1217273).
 
 ---
 
