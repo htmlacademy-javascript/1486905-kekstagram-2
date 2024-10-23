@@ -60,31 +60,109 @@ let time = 'Начало рабочего дня' + ' ' + startWorkingDay +
   'продолжительность встречи в минутах' + timeMeeting
 console.log(time);*/
 
-let startMeeting = '14:00'; // Начало встречи
-let finishWorkingDay = '17:30'; // Конец дня
-let timeMeeting = '90' // продолжительность встречи в минутах
-
-/*Находим разницу между концом дням и началом встречи в минутах*/
-let getDate = (string) => new Date(0, 0, 0, string.split(':')[0], string.split(':')[1]);
-let different = (getDate(finishWorkingDay) - getDate(startMeeting));
-let differentRes, hours, minuts;
-if (different > 0) {
-  differentRes = different;
-  hours = Math.floor((differentRes % 86400000) / 3600000);
-  minuts = Math.round(((differentRes % 86400000) % 3600000) / 60000);
-} else {
-  differentRes = Math.abs((getDate(startMeeting) - getDate(finishWorkingDay)));
-  hours = Math.floor(24 - (differentRes % 86400000) / 3600000);
-  minuts = Math.round(60 - ((differentRes % 86400000) % 3600000) / 60000);
-}
-let result = (hours * 60) + minuts;
-console.log(result);
-
-/*Сраниваем врем встречи в минутах и разницой между концом дням и началом встречи в минутах*/
-if (result >= timeMeeting) {
-  console.log(true)
-}
-else {
-  console.log(false)
+/*const getTimePoint = (timeString) => {
+  const [hour, min] = timeString.split(':');
+  return parseInt(hour, 10) * 60 + parseInt(min, 10)
 }
 
+const checkTime = (startDay, endDay, startMeeting, lengthMeeting) => {
+  const startDayPoint = getTimePoint(startDay)
+  const endDayPoint = getTimePoint(endDay)
+  const startMeetingPoint = getTimePoint(startMeeting)
+  const endMeetingPoint = startMeetingPoint + lengthMeeting
+  return (startMeetingPoint >= startDayPoint && startMeetingPoint <= endDayPoint) && (endMeetingPoint >= startDayPoint && endMeetingPoint <= endDayPoint)
+}
+console.log(checkTime('08:00', '17:30', '14:00', 90))*/
+
+/*Определение номера этажа и подъезда местонахождения квартиры*/
+/*findEntranceAndFloor = function () {
+  let apartmentsOnFloor = 3, numberFloorsHouse = 12, apartmentNumber = 15;
+  let n1, n2, n3, n4;
+  apartmentsInEntrance = numberFloorsHouse * apartmentsOnFloor;//сколько квартир в подъезде
+
+  n4 = apartmentNumber % apartmentsInEntrance;
+  n2 = (apartmentNumber - n4) / apartmentsInEntrance;
+  n1 = n4 == 0 ? n2 : n2 + 1;//в каком подъезде эта квартира
+
+  n3 = (((apartmentNumber - 1 - ((apartmentNumber - 1) % apartmentsOnFloor)) / apartmentsOnFloor) % numberFloorsHouse) + 1;//на каком этаже эта квартира
+  console.log('Номер подъезда:\n' + n1 + '\nЭтаж на котором находится квартира:\n' + n3);
+};
+
+findEntranceAndFloor()*/
+
+/*1. Узор «Квадратная звезда» в Javascript*/
+
+/*let n = 5;//количество строк или столбцов
+let string = "";//определение пустой строки
+
+for (let i = 0; i < n; i++) { //внешний контур
+  for (let j = 0; j < n; j++) { //внутренний контур
+    string += "*";
+  }
+  //новая строка после каждой строки
+  string += "\n";
+}
+
+console.log(string);*/
+/*. Узор с полыми квадратами*/
+/*let n = 5;
+let string = "";
+
+for (let i = 0; i < n; i++) { // external loop
+  for (let j = 0; j < n; j++) { // internal loop
+    if (i === 0 || i === n - 1) {
+      string += "*";
+    }
+    else {
+      if (j === 0 || j === n - 1) {
+        string += "*";
+      }
+      else {
+        string += " ";
+      }
+    }
+  }
+  // newline after each row
+  string += "\n";
+}
+// printing the string
+console.log(string);*/
+
+/*3. Шаблон прямоугольного треугольника в Javascript*/
+
+/*let n = 5;
+let string = "";
+for (let i = 1; i <= n; i++) {
+  // printing spaces
+  for (let j = 0; j < n - i; j++) {
+    string += " ";
+  }
+  // printing star
+  for (let k = 0; k < i; k++) {
+    string += "*";
+  }
+  string += "\n";
+}
+console.log(string);*/
+
+/*4. Паттерн «Левый треугольник» в Javascript
+let n = 5;
+let string = "";
+for (let i = 1; i <= n; i++) {
+  for (let j = 0; j < i; j++) {
+    string += "*";
+  }
+  string += "\n";
+}
+console.log(string);*/
+/*5. Паттерн «Звезда с нисходящим треугольником»*/
+let n = 5;
+let string = "";
+for (let i = 0; i < n; i++) {
+  // printing star
+  for (let k = 0; k < n - i; k++) {
+    string += "*";
+  }
+  string += "\n";
+}
+console.log(string);
