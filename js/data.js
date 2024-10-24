@@ -66,5 +66,5 @@ const photos = Array.from({ length: SIMILAR_OBJECTS_COUNT }, createPhoto);
 
 console.log(photos);
 
-export { createComment, createPhoto };
+export { createComment, createPhoto, uniquePhoto };
 
