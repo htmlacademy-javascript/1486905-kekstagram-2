@@ -68,3 +68,5 @@ console.log(photos);
 
 export { createComment, createPhoto, uniquePhoto };
 
+export { photos };
+

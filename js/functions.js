@@ -155,7 +155,7 @@ for (let i = 1; i <= n; i++) {
   string += "\n";
 }
 console.log(string);*/
-/*5. Паттерн «Звезда с нисходящим треугольником»*/
+/*5. Паттерн «Звезда с нисходящим треугольником»
 let n = 5;
 let string = "";
 for (let i = 0; i < n; i++) {
@@ -165,4 +165,7 @@ for (let i = 0; i < n; i++) {
   }
   string += "\n";
 }
-console.log(string);
+console.log(string);*/
+
+
+

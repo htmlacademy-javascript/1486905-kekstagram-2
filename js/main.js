@@ -1,4 +1,4 @@
-import './setup.js';
-import './data.js';
-import './thumbnail.js';
+import { photos } from './data.js';
+import { createThumbnals } from './thumbnail.js'
 
+createThumbnals(photos)

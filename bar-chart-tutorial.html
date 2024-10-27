@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .graph {
+      display: flex;
+      gap: 5px;
+      align-items: flex-end;
+      width: 600px;
+      margin: 100px auto 0;
+    }
+
+    .item {
+      width: 160px;
+      height: 160px;
+      background-color: red;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #ffffff;
+    }
+  </style>
+</head>
+
+<ul class="graph vertical">
+
+</ul>
+
+<body>
+
+  <script>
+
+    const data = [
+      {
+        color: 'red',
+        height: 20,
+        marginTop: 10,
+        text: 'Январь'
+      },
+      {
+        color: 'aqua',
+        height: 50,
+        marginTop: 20,
+        text: 'Февраль'
+      },
+      {
+        color: 'yellow',
+        height: 40,
+        marginTop: 30,
+        text: 'Март'
+      },
+      {
+        color: 'green',
+        height: 100,
+        marginTop: 40,
+        text: 'Апрель'
+      },
+      {
+        color: 'violet',
+        height: 20,
+        marginTop: 50,
+        text: 'Май'
+      },
+      {
+        color: 'black',
+        height: 160,
+        marginTop: 60,
+        text: 'Июнь'
+      },
+      {
+        color: 'tomato',
+        height: 40,
+        marginTop: 100,
+        text: 'Июль'
+      },
+      {
+        color: 'green',
+        height: 200,
+        marginTop: 200,
+        text: 'Август'
+      },
+
+    ]
+    const graph = document.querySelector('.graph');
+    const fragment = document.createDocumentFragment();
+    data.forEach((item) => {
+      const listItem = document.createElement('li');
+      listItem.classList.add('item');
+      listItem.style.backgroundColor = item.color;
+      listItem.style.height = `${item.height}px`;
+      listItem.style.marginTop = `${item.marginTop}px`;
+      listItem.textContent = item.text;
+
+      fragment.append(listItem)
+    });
+    graph.append(fragment);
+
+  </script>
+</body>
+
+</html>
