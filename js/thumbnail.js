@@ -5,6 +5,7 @@ export const createThumbnals = (pictures) => {
   const fragment = document.createDocumentFragment();
   pictures.forEach(({ id, url, description, likes, comments }) => {
     const thumb = template.cloneNode(true);
+    thumb.dataset.pictureId = id;
     const image = thumb.querySelector('.picture__img');
     image.src = url;
     image.alt = description;
@@ -14,3 +15,6 @@ export const createThumbnals = (pictures) => {
   });;
   pictureContainer.append(fragment);
 };
+
+
+
