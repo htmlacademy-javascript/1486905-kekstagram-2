@@ -65,8 +65,11 @@ const createPhoto = () => ({
 const photos = Array.from({ length: SIMILAR_OBJECTS_COUNT }, createPhoto);
 
 console.log(photos);
+const commentsNumber = getRandomInteger(0, 9);
+const commentsTotal = getRandomInteger(10, 200);
 
 export { createComment, createPhoto, uniquePhoto };
 
-export { photos };
+export { photos, commentsNumber, commentsTotal };
+
 

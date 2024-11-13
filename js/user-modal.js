@@ -1,19 +1,3 @@
-
-const picturesNode = document.querySelector('.pictures');
-const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
-const pituresFragment = document.createDocumentFragment();
-
-
-
-picturesNode.addEventListener('click', (evt) => {
-  const currentPictureNode = evt.target.closest('.picture');
-
-  if (currentPictureNode) {
-    openBigPicture(thumb.dataset.pictureID);
-  }
-});
-export { picturesNode };
-
 /*const userModalElement = document.querySelector('.big-picture');
 const userModalOpenElement = document.querySelector('.overlay');
 const userModalCloseElement = userModalElement.querySelector('.big-picture');
