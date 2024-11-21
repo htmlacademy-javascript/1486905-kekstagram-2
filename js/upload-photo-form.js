@@ -1,3 +1,5 @@
+import { isValid } from './validation.js';
+
 const uploadForm = document.querySelector('.img-upload__form');
 const pageBody = document.querySelector('body');
 
@@ -12,6 +14,13 @@ const onPhotoEditorResetBtnClick = () => {
   closePhotoEditor();
 };
 
+const onDocumentKeydown = (evt) => {
+  // console.log(evt.key)
+  if (evt.key === 'Escape') {
+    closePhotoEditor();
+  }
+}
+
 function closePhotoEditor() {
   photoEditorForm.classList.add('hidden');
   pageBody.classList.remove('modal-open');
@@ -19,6 +28,12 @@ function closePhotoEditor() {
   photoEditorResetBtn.removeEventListener('click', onPhotoEditorResetBtnClick);
   uploadFileControl.value = '';
 }
+
+uploadForm.addEventListener('submit', (evt) => {
+  if (!isValid()) {
+    evt.preventDefault();
+  }
+})
 
 export const initUploadModal = () => {
   uploadFileControl.addEventListener('change', () => {
