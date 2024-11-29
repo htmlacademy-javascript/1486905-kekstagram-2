@@ -15,7 +15,6 @@ const onPhotoEditorResetBtnClick = () => {
 };
 
 const onDocumentKeydown = (evt) => {
-  // console.log(evt.key)
   if (evt.key === 'Escape') {
     closePhotoEditor();
   }
