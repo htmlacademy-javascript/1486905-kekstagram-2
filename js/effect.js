@@ -4,6 +4,7 @@ const sliderContainer = uploadForm.querySelector('.effect-level__slider');
 const effectsList = uploadForm.querySelector('.effects__list');
 const effectValue = uploadForm.querySelector('.effect-level__value');
 const image = uploadForm.querySelector('.img-upload__preview img');
+const sliderBlock = uploadForm.querySelector('.effect-level');
 
 noUiSlider.create(sliderContainer, {
   range: {
@@ -34,13 +35,19 @@ const updateSlider = ({ range, step }) => {
   });
 }
 
+export const reset = () => {
+  image.style.filter = '';
+  sliderBlock.classList.add('hidden');
+}
+
 effectsList.addEventListener('change', ({ target }) => {
-  console.log(target.value)
-  updateSlider(EffectsSettings[target.value])
-  if
-    ((target.value) == none) {
-    image.removeAttribute("style");
+  if ((target.value) === 'none') {
+    reset();
+  } else {
+    sliderBlock.classList.remove('hidden');
+    updateSlider(EffectsSettings[target.value]);
   }
 });
 
+reset();
 
