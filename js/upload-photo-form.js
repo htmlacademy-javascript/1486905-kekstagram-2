@@ -1,4 +1,6 @@
+import { reset as resetEffects } from './effect.js';
 import { isValid } from './validation.js';
+import { reset as resetScale } from './scale.js';
 
 const uploadForm = document.querySelector('.img-upload__form');
 const pageBody = document.querySelector('body');
@@ -15,7 +17,6 @@ const onPhotoEditorResetBtnClick = () => {
 };
 
 const onDocumentKeydown = (evt) => {
-  // console.log(evt.key)
   if (evt.key === 'Escape') {
     closePhotoEditor();
   }
@@ -27,6 +28,8 @@ function closePhotoEditor() {
   document.removeEventListener('keydown', onDocumentKeydown);
   photoEditorResetBtn.removeEventListener('click', onPhotoEditorResetBtnClick);
   uploadFileControl.value = '';
+  resetEffects();
+  resetScale();
 }
 
 uploadForm.addEventListener('submit', (evt) => {

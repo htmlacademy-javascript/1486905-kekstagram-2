@@ -1,6 +1,8 @@
 const form = document.querySelector('#upload-select-image');
-const hashtags = document.querySelector('.text__hashtags')
-const description = document.querySelector('.text__description')
+const hashtags = document.querySelector('.text__hashtags');
+const description = document.querySelector('.text__description');
+const DESCRIPTION_LENGTH = 140;
+const NUMBER_OF_HASHTAGS = 5;
 
 const pristine = new Pristine(form, {
   classTo: 'img-upload__field-wrapper',
@@ -8,10 +10,10 @@ const pristine = new Pristine(form, {
 });
 
 const space = /\s+/g;
-const hash = /^#[a-zA-Zа-яА-ЯЁё]{1,19}$/
+const hash = /^#[a-zA-Zа-яА-ЯЁё0-9]{1,19}$/
 
 const checkDescription = (value) => {
-  return value.length <= 10
+  return value.length <= DESCRIPTION_LENGTH
 }
 
 const getHashs = (value) => value.replaceAll(space, ' ').trim().split(' ');
@@ -21,8 +23,7 @@ const validateCountHashtags = (value) => {
     return true;
   }
   const hashs = getHashs(value);
-  console.log(hashs)
-  return hashs.length <= 5;
+  return hashs.length <= NUMBER_OF_HASHTAGS;
 };
 
 const checkHashtags = (value) => {
@@ -51,21 +52,20 @@ pristine.addValidator(
 pristine.addValidator(
   hashtags,
   checkHashtags,
-  '###'
+  'строка после решётки должна состоять из букв и чисел и не может содержать пробелы, спецсимволы (#, @, $ и т. п.), символы пунктуации (тире, дефис, запятая и т. п.), эмодзи и т. д.'
 );
 
 pristine.addValidator(
   hashtags,
   checkUnique,
-  'Хештеги не должны повторяться'
+  'хэштеги не должны повторяться'
 )
 
 pristine.addValidator(
   description,
   checkDescription,
-  'Длина сообщения не должна превышать 10'
+  'длина сообщения не должна превышать 140 символов'
 );
 
 export const isValid = () => pristine.validate();
 
-export const isValid = () => pristine.validate();
