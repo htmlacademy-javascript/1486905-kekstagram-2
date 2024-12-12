@@ -1,8 +1,12 @@
 import { reset as resetEffects } from './effect.js';
 import { isValid } from './validation.js';
 import { reset as resetScale } from './scale.js';
+import { sendData } from './api.js';
+import { open as openPopup } from './popup.js';
+import { POPUPS_TYPES } from './constants.js';
 
 const uploadForm = document.querySelector('.img-upload__form');
+const formSubmitButton = uploadForm.querySelector('.img-upload__submit');
 const pageBody = document.querySelector('body');
 
 const uploadFileControl = uploadForm.querySelector('#upload-file');
@@ -27,14 +31,33 @@ function closePhotoEditor() {
   pageBody.classList.remove('modal-open');
   document.removeEventListener('keydown', onDocumentKeydown);
   photoEditorResetBtn.removeEventListener('click', onPhotoEditorResetBtnClick);
-  uploadFileControl.value = '';
+  uploadForm.reset();
   resetEffects();
   resetScale();
 }
+const SubmitButtonText = {
+  IDLE: 'Опубликовать',
+  SENDING: 'Отправляю...',
+};
 
-uploadForm.addEventListener('submit', (evt) => {
-  if (!isValid()) {
-    evt.preventDefault();
+const disableButton = (isDisabled = true) => {
+  formSubmitButton.disabled = isDisabled;
+  formSubmitButton.textContent = isDisabled ? SubmitButtonText.SENDING : SubmitButtonText.IDLE;
+};
+
+uploadForm.addEventListener('submit', async (evt) => {
+  evt.preventDefault();
+  if (isValid()) {
+    try {
+      disableButton();
+      await sendData(new FormData(uploadForm));
+      closePhotoEditor();
+      openPopup(POPUPS_TYPES.SUCCESS)
+
+    } catch (error) {
+      openPopup(POPUPS_TYPES.ERROR)
+    }
+    disableButton(false);
   }
 })
 
@@ -47,3 +70,4 @@ export const initUploadModal = () => {
 
   });
 };
+

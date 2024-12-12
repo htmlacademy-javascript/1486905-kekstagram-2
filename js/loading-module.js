@@ -19,7 +19,7 @@ const enableButton = (text) => {
   formSubmitButton.textContent = text;
 };
 
-const sendFormData = async (formElement) => {
+export const sendFormData = async (formElement) => {
   const isValid = validate();
   if (isValid) {
     disabledButton(SubmitButtonText.SENDING)

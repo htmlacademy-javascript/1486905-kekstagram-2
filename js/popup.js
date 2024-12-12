@@ -1,6 +1,21 @@
+import { POPUPS_TYPES } from './constants.js';
 
-import { createComment } from './data.js';
-import { createPhoto } from './data.js';
+const body = document.body;
+const succesTemplate = document.querySelector('#success').content.querySelector('.success');
+const errorTemplate = document.querySelector('#error').content.querySelector('.error');
 
-const userDialog = document.querySelector('.overlay');
-userDialog.classList.remove('hidden');
+const templates = {
+  [POPUPS_TYPES.SUCCESS]: succesTemplate,
+  [POPUPS_TYPES.ERROR]: errorTemplate
+};
+
+export const open = (type) => {
+  const newPopup = templates[type].cloneNode(true);
+  newPopup.addEventListener('click', ({ target }) => {
+    if (target.classList.contains(type) || target.classList.contains(`${type}__button`)) {
+      newPopup.remove()
+    }
+  });
+
+  body.append(newPopup);
+}

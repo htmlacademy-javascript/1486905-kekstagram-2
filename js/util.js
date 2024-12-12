@@ -30,7 +30,7 @@ const getCounter = () => {
   }
 };
 
-const errorLoadDataTemplate = document.querySelector('#data-error').textContent;
+const errorLoadDataTemplate = document.querySelector('#data-error').content.querySelector('.data-error');
 const body = document.body;
 const REMOVE_MESSAGE_TIMEOUT = 5000;
 
@@ -49,3 +49,5 @@ export const showErrorMessage = (message) => {
 };
 
 export { getRandomInteger, getRandomElement, getUniqueRandom, getCounter };
+
+
