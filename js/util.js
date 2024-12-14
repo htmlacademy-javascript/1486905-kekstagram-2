@@ -1,3 +1,9 @@
+import { DEBOUNCE_DELAY } from './constants.js';
+
+const errorLoadDataTemplate = document.querySelector('#data-error').content.querySelector('.data-error');
+const body = document.body;
+const REMOVE_MESSAGE_TIMEOUT = 5000;
+
 const getRandomInteger = (a, b) => {
   const lower = Math.ceil(Math.min(a, b));
   const upper = Math.floor(Math.max(a, b));
@@ -19,7 +25,7 @@ const getUniqueRandom = (a, b) => {
     }
     uniqueItems.push(unique);
     return unique;
-  }
+  };
 };
 
 const getCounter = () => {
@@ -27,12 +33,8 @@ const getCounter = () => {
   return () => {
     counter = counter + 1;
     return counter;
-  }
+  };
 };
-
-const errorLoadDataTemplate = document.querySelector('#data-error').content.querySelector('.data-error');
-const body = document.body;
-const REMOVE_MESSAGE_TIMEOUT = 5000;
 
 export const showErrorMessage = (message) => {
   const errorArea = errorLoadDataTemplate.cloneNode(true);
@@ -47,13 +49,12 @@ export const showErrorMessage = (message) => {
     errorLoadDataArea.remove();
   }, REMOVE_MESSAGE_TIMEOUT);
 };
-const DEBOUNCE_DELAY = 500;
 
 function debounce(callback, timeoutDelay = DEBOUNCE_DELAY) {
   let timeoutId;
   return function () {
     clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => callback(...arguments), timeoutDelayme);
+    timeoutId = setTimeout(() => callback(...arguments), timeoutDelay);
   };
 }
 
