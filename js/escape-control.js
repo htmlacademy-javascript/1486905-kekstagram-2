@@ -27,7 +27,6 @@ export const setEscapeControl = (closeFunction, condition = null) => {
 };
 
 export const removeEscapeControl = () => {
-  const index = windows.length - 1;
   windows.length = windows.length - 1;
   if (!windows.length) {
     listener = null;
