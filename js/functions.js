@@ -167,5 +167,14 @@ for (let i = 0; i < n; i++) {
 }
 console.log(string);*/
 
+/*while (n <= 0) {
+  console.log(n),
+    x++;
+  x += n;
+}*/
+/*for (i = 1, i <= 100; i++;) {
+  if
+    (i % 2 == 0) { console.log(i) }
+};*/
 
 

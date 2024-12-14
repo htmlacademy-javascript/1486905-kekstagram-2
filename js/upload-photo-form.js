@@ -16,6 +16,9 @@ const photoEditorResetBtn = photoEditorForm.querySelector('#upload-cancel');
 const hashtagInput = uploadForm.querySelector('.text__hashtags');
 const commentInput = uploadForm.querySelector('.text__description');
 
+const FILE_TYPES = ['jpg', 'jpeg', 'png', 'gif', 'jfif'];
+
+
 const onPhotoEditorResetBtnClick = () => {
   closePhotoEditor();
 };
@@ -67,7 +70,21 @@ export const initUploadModal = () => {
     pageBody.classList.add('modal-open');
     photoEditorResetBtn.addEventListener('click', onPhotoEditorResetBtnClick);
     document.addEventListener('keydown', onDocumentKeydown);
-
   });
 };
+
+export function onFileInputChange() {
+  const file = uploadFileInputElement.files[0];
+  const fileName = file.name.toLowerCase();
+  const matches = FILE_TYPES.some((item) => fileName.endsWith(item));
+  if (matches) {
+    const url = URL.createObjectURL(file);
+    uploadPreview.src = url;
+    uploadPreviewEffects.forEach((item) => {
+      item.style.backgroundImage = `url(${url})`;
+    });
+  } else {
+    return;
+  }
+}
 
