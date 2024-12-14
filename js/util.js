@@ -30,7 +30,7 @@ const getCounter = () => {
   }
 };
 
-const errorLoadDataTemplate = document.querySelector('#data-error').textContent;
+const errorLoadDataTemplate = document.querySelector('#data-error').content.querySelector('.data-error');
 const body = document.body;
 const REMOVE_MESSAGE_TIMEOUT = 5000;
 
@@ -47,5 +47,16 @@ export const showErrorMessage = (message) => {
     errorLoadDataArea.remove();
   }, REMOVE_MESSAGE_TIMEOUT);
 };
+const DEBOUNCE_DELAY = 500;
 
-export { getRandomInteger, getRandomElement, getUniqueRandom, getCounter };
+function debounce(callback, timeoutDelay = DEBOUNCE_DELAY) {
+  let timeoutId;
+  return function () {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback(...arguments), timeoutDelayme);
+  };
+}
+
+export { getRandomInteger, getRandomElement, getUniqueRandom, getCounter, debounce };
+
+

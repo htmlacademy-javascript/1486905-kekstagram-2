@@ -1,22 +1,14 @@
-import { photos } from './data.js';
 import { createThumbnals } from './thumbnail.js';
 import { initUploadModal } from './upload-photo-form.js';
-import './scale.js';
-import './constants.js';
-import './effect.js';
-import { getData, sendData } from './api.js';
+import { getData } from './api.js';
 import { showErrorMessage } from './util.js';
-import './loading-module.js';
+import { configFilter } from './filters.js';
 
-/*const bootstrap = async () => {
-  const photos = await getData();
-  createThumbnals(photos);
-};*/
-
-const bootstrap = async () => {
+export const bootstrap = async () => {
   try {
     const photos = await getData();
     createThumbnals(photos);
+    configFilter(photos);
   } catch (error) {
     showErrorMessage(error.message);
   }
@@ -25,7 +17,3 @@ const bootstrap = async () => {
 bootstrap();
 
 initUploadModal();
-
-sendFormData();
-
-/*createThumbnals(photos);*/
