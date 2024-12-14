@@ -27,4 +27,3 @@ const sendData = async (body) => await load(Route.SEND_DATA, Method.POST, body);
 export { getData, sendData };
 
 
-

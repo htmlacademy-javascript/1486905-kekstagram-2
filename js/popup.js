@@ -1,4 +1,5 @@
 import { POPUPS_TYPES } from './constants.js';
+import { removeEscapeControl, setEscapeControl } from './escape-control.js';
 
 const body = document.body;
 const succesTemplate = document.querySelector('#success').content.querySelector('.success');
@@ -13,9 +14,14 @@ export const open = (type) => {
   const newPopup = templates[type].cloneNode(true);
   newPopup.addEventListener('click', ({ target }) => {
     if (target.classList.contains(type) || target.classList.contains(`${type}__button`)) {
-      newPopup.remove()
+      newPopup.remove();
+      removeEscapeControl();
     }
   });
 
+  setEscapeControl(() => {
+    newPopup.remove();
+  });
+
   body.append(newPopup);
-}
+};

@@ -1,13 +1,9 @@
 import { sendData } from './api.js';
+import { SubmitButtonText } from './constants.js';
 
 const form = document.querySelector('.img-upload__form');
 const closeModal = () => form.reset();
 const formSubmitButton = form.querySelector('.img-upload__submit');
-
-const SubmitButtonText = {
-  IDLE: 'Сохранить',
-  SENDING: 'Сохраняю...',
-};
 
 const disabledButton = (text) => {
   formSubmitButton.disabled = true;
@@ -22,7 +18,7 @@ const enableButton = (text) => {
 export const sendFormData = async (formElement) => {
   const isValid = validate();
   if (isValid) {
-    disabledButton(SubmitButtonText.SENDING)
+    disabledButton(SubmitButtonText.SENDING);
     await sendData(new FormData(formElement));
     enableButton(SubmitButtonText.IDLE);
     closeModal();

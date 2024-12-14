@@ -1,3 +1,6 @@
+import { removeEscapeControl, setEscapeControl } from './escape-control.js';
+import { COMMENTS_STEP } from './constants.js';
+
 const bigPictureTag = document.querySelector('.big-picture');
 const closeButtonTag = bigPictureTag.querySelector('#picture-cancel');
 const imageTag = bigPictureTag.querySelector('.big-picture__img img');
@@ -9,7 +12,6 @@ const listCommentsTag = bigPictureTag.querySelector('.social__comments');
 const socialCommentTag = bigPictureTag.querySelector('.social__comment');
 const socialCommentsLoader = bigPictureTag.querySelector('.comments-loader');
 
-const COMMENTS_STEP = 5;
 let localComments;
 let renderedComments = 0;
 
@@ -33,14 +35,14 @@ const renderLoader = () => {
   } else {
     socialCommentsLoader.classList.add('hidden');
   }
-}
+};
 
 const renderComments = () => {
 
   const fragment = document.createDocumentFragment();
   localComments.splice(0, COMMENTS_STEP).forEach((item) => {
     const socialCommentNode = socialCommentTag.cloneNode(true);
-    const avatarTag = socialCommentNode.querySelector('.social__picture')
+    const avatarTag = socialCommentNode.querySelector('.social__picture');
     avatarTag.src = item.avatar;
     avatarTag.alt = item.name;
     socialCommentNode.querySelector('.social__text').textContent = item.message;
@@ -51,7 +53,7 @@ const renderComments = () => {
   listCommentsTag.append(fragment);
   updateStatistic();
   renderLoader();
-}
+};
 
 const render = (data) => {
   imageTag.src = data.url;
@@ -64,22 +66,24 @@ const render = (data) => {
   localComments = [...data.comments];
   renderedComments = 0;
   renderComments();
-}
-
-export const openBigPicture = (photo) => {
-  showBigPicture();
-  render(photo)
 };
 
 const closeBigPicture = () => {
   hideBigPicture();
 };
 
+export const openBigPicture = (photo) => {
+  showBigPicture();
+  render(photo);
+  setEscapeControl(closeBigPicture);
+};
+
 closeButtonTag.addEventListener('click', (evt) => {
   evt.preventDefault();
   closeBigPicture();
+  removeEscapeControl();
 });
 
 socialCommentsLoader.addEventListener('click', () => {
   renderComments();
-})
+});

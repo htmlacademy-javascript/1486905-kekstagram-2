@@ -1,22 +1,20 @@
+import { DESCRIPTION_LENGTH, NUMBER_OF_HASHTAGS } from './constants.js';
+
 const form = document.querySelector('#upload-select-image');
 const hashtags = document.querySelector('.text__hashtags');
 const description = document.querySelector('.text__description');
-const DESCRIPTION_LENGTH = 140;
-const NUMBER_OF_HASHTAGS = 5;
+const space = /\s+/g;
+const hash = /^#[a-zA-Zа-яА-ЯЁё0-9]{1,19}$/;
 
 const pristine = new Pristine(form, {
   classTo: 'img-upload__field-wrapper',
   errorTextParent: 'img-upload__field-wrapper',
+  errorTextClass: 'img-upload__field-wrapper--error'
 });
 
-const space = /\s+/g;
-const hash = /^#[a-zA-Zа-яА-ЯЁё0-9]{1,19}$/
+const checkDescription = (value) => value.length <= DESCRIPTION_LENGTH;
 
-const checkDescription = (value) => {
-  return value.length <= DESCRIPTION_LENGTH
-}
-
-const getHashs = (value) => value.replaceAll(space, ' ').trim().split(' ');
+const getHashs = (value) => value.replaceAll(space, ' ').trim().toLowerCase().split(' ');
 
 const validateCountHashtags = (value) => {
   if (!value.length) {
@@ -31,7 +29,7 @@ const checkHashtags = (value) => {
     return true;
   }
   const hashs = getHashs(value);
-  return hashs.every((item) => hash.test(item))
+  return hashs.every((item) => hash.test(item));
 };
 
 const checkUnique = (value) => {
@@ -59,7 +57,7 @@ pristine.addValidator(
   hashtags,
   checkUnique,
   'хэштеги не должны повторяться'
-)
+);
 
 pristine.addValidator(
   description,
@@ -69,3 +67,4 @@ pristine.addValidator(
 
 export const isValid = () => pristine.validate();
 
+export const reset = () => pristine.reset();

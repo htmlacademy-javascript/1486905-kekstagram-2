@@ -1,11 +1,18 @@
-import { openBigPicture } from "./big-picture.js";
+import { openBigPicture } from './big-picture.js';
 
 const template = document.querySelector('#picture').content.querySelector('.picture');
 const pictureContainer = document.querySelector('.pictures');
 
 let localPictures = [];
 
+const clear = () => {
+  document.querySelectorAll('.picture').forEach((item) => {
+    item.remove();
+  });
+};
+
 export const createThumbnals = (pictures) => {
+  clear();
   localPictures = [...pictures];
   const fragment = document.createDocumentFragment();
   pictures.forEach(({ id, url, description, likes, comments }) => {
@@ -17,7 +24,7 @@ export const createThumbnals = (pictures) => {
     thumb.querySelector('.picture__likes').textContent = likes;
     thumb.querySelector('.picture__comments').textContent = comments.length;
     fragment.append(thumb);
-  });;
+  });
   pictureContainer.append(fragment);
 };
 
@@ -28,8 +35,6 @@ pictureContainer.addEventListener('click', (evt) => {
     const currentPhoto = localPictures.find((item) => item.id === currentId);
     openBigPicture(currentPhoto);
   }
-})
-
-
+});
 
 
