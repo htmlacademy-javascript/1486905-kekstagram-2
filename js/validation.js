@@ -1,10 +1,8 @@
-import { DESCRIPTION_LENGTH, NUMBER_OF_HASHTAGS } from './constants.js';
+import { DESCRIPTION_LENGTH, NUMBER_OF_HASHTAGS, SPACE, HASH } from './constants.js';
 
 const form = document.querySelector('#upload-select-image');
 const hashtags = document.querySelector('.text__hashtags');
 const description = document.querySelector('.text__description');
-const space = /\s+/g;
-const hash = /^#[a-zA-Zа-яА-ЯЁё0-9]{1,19}$/;
 
 const pristine = new Pristine(form, {
   classTo: 'img-upload__field-wrapper',
@@ -14,7 +12,7 @@ const pristine = new Pristine(form, {
 
 const checkDescription = (value) => value.length <= DESCRIPTION_LENGTH;
 
-const getHashs = (value) => value.replaceAll(space, ' ').trim().toLowerCase().split(' ');
+const getHashs = (value) => value.replaceAll(SPACE, ' ').trim().toLowerCase().split(' ');
 
 const validateCountHashtags = (value) => {
   if (!value.length) {
@@ -29,7 +27,7 @@ const checkHashtags = (value) => {
     return true;
   }
   const hashs = getHashs(value);
-  return hashs.every((item) => hash.test(item));
+  return hashs.every((item) => HASH.test(item));
 };
 
 const checkUnique = (value) => {

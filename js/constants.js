@@ -75,7 +75,7 @@ export const FILTER = {
 };
 
 export const SORTFUNC = {
-  random: () => 0.5 - Math.random(),
+  getRandomPhotos: () => 0.5 - Math.random(),
   discussed: (a, b) => b.comments.length - a.comments.length
 };
 
@@ -108,3 +108,7 @@ export const SubmitButtonText = {
 };
 
 export const COMMENTS_STEP = 5;
+
+export const SPACE = /\s+/g;
+export const HASH = /^#[a-zA-Zа-яА-ЯЁё0-9]{1,19}$/;
+export const REMOVE_MESSAGE_TIMEOUT = 5000;
