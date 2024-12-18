@@ -32,12 +32,10 @@ function applyFilter() {
   debounceRender(filteredPictures);
 }
 
-function changeFilter(picturesData) {
+function initFilter(picturesData) {
   filterElement.classList.remove('img-filters--inactive');
   pictures = [...picturesData];
   filterFormElement.addEventListener('click', onFilterChange);
 }
 
-export { changeFilter };
-
-
+export { initFilter };
