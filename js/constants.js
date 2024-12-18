@@ -76,7 +76,7 @@ export const FILTER = {
 
 export const SORTFUNC = {
   getRandomPhotos: () => 0.5 - Math.random(),
-  discussed: (a, b) => b.comments.length - a.comments.length
+  getDiscussed: (a, b) => b.comments.length - a.comments.length
 };
 
 export const ACTIVE_BUTTON_CLASS = 'img-filters__button--active';
@@ -84,8 +84,8 @@ export const MAX_PICTURES_COUNT = 10;
 
 export const FILTERS_ACTIONS = {
   [FILTER.default]: (photos) => [...photos],
-  [FILTER.random]: (photos) => [...photos].toSorted(SORTFUNC.random).slice(0, MAX_PICTURES_COUNT),
-  [FILTER.discussed]: (photos) => [...photos].toSorted(SORTFUNC.discussed)
+  [FILTER.random]: (photos) => [...photos].toSorted(SORTFUNC.getRandomPhotos).slice(0, MAX_PICTURES_COUNT),
+  [FILTER.discussed]: (photos) => [...photos].toSorted(SORTFUNC.getDiscussed)
 };
 
 export const FILE_TYPES = ['jpg', 'jpeg', 'png', 'gif', 'jfif'];
@@ -111,4 +111,4 @@ export const COMMENTS_STEP = 5;
 
 export const SPACE = /\s+/g;
 export const HASH = /^#[a-zA-Zа-яА-ЯЁё0-9]{1,19}$/;
-export const REMOVE_MESSAGE_TIMEOUT = 5000;
+export const REMOVE_MESSAGE_TIMEOUT = 500;
